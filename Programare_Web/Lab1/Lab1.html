@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Laborator 1</title>
+</head>
+<body>
+<form action="http://www.google.com" method="POST">
+<table border="1"> 
+	<tr>
+		<th colspan="6" bgcolor="#C0C0C0">Fisa de inscriere biblioteca UBB</th>
+	</tr>
+	<tr> 
+		<th >Nume</th>
+		<td colspan="3"><input type="text" size=63></td> 
+		<th >Data </th>
+		<td><input type="text" size=20></td> 		
+	</tr>
+	
+	<tr>
+		<th> Oras </th>
+		<td><input type="text" size=20></td> 
+		<th> Judet </th>
+		<td><input type="text" size=20></td>
+		<th> Cod postal  </th>
+		<td><input type="text" size=20></td>
+	</tr>
+	<tr>
+		<th> Facultate </th> 
+		<td colspan="3"><select name="facultate" size="5">
+			<option value="1">Facultatea de Matematica si Informatica</option>
+			<option value="2">Facultatea de Fizica</option>
+			<option value="3">Facultatea de Chimie si Inginerie Chimica</option>
+			<option value="4">Facultatea de Biologie si Geologie</option>
+			<option value="5">Facultatea de Geografie</option>
+			<option value="6">Facultatea de Drept</option>
+			<option value="7">Facultatea de Stiinte Economice</option></select></td>
+		<th> An </th>
+		<td><input type="radio" name="an" value="1">I
+			<input type="radio" name="an" value="2">II
+			<input type="radio" name="an" value="3">III
+			<input type="radio" name="an" value="4">IV
+		</td>
+	</tr>
+	<tr>
+		<th colspan="6" bgcolor="#C0C0C0">Cerere imprumut carte</th>
+	</tr>
+	<tr>
+		<th>Titlu</th>
+		<td colspan="2"><input type="text" size="37"></td>
+		<th>Autor</th>
+		<td colspan="2"><input type="text" size="37"></td>
+	</tr>
+	<tr>
+		<th>Editura</th>
+		<td><input type="text" size="20"></td>
+		<th>Anul aparitiei</th>
+		<td><input type="text" size="20"></td>
+		<th>Data restituirii</th>
+		<td><input type="text" size="20"></td>
+	</tr>
+	<tr valign="top">
+		<th>Observatii</th>
+		<td colspan="5"> <textarea rows="7" cols="83">A se completa cu eventualele observatii</textarea> </td>
+	</tr>
+	<tr>
+	<th colspan="6" align="left">
+		Reguli:<br>	
+		<ol type="">
+			<li>Cartea va fi returnata in stare buna</li>
+			<li>Cartea va fi returnata la timp</li>
+			<li>In cazul intarzierii se percep penalitati</li>
+			<li>Nu se pot imprumuta mai mult de 3 exemplare in acelasi timp</li>
+		</ol>
+	<th>
+	</tr>
+	<tr>
+		<td colspan="4"><input type="checkbox" name="terms" value="T">Sunt de acord cu termenii si conditiile </td>
+        <td align="right" colspan="2"> <input type="submit" value="Salveaza si tipareste"> </td>
+	</tr>
+	
+	
+</table>
+</form>
+</body>
+</html>
