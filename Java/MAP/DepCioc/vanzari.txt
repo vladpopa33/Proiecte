@@ -1,0 +1,9 @@
+S-a vandut din planta gndnf cantitatea 3400 !
+S-a vandut din planta gndnf cantitatea 400 !
+S-a vandut din planta praline cantitatea 5 !
+S-a vandut din planta praline cantitatea 3 !
+S-a vandut din planta cioco1 cantitatea 5 !
+S-a vandut din planta Poiana cantitatea 8000 !
+S-a vandut din planta gndnf cantitatea 0 !
+S-a vandut din planta gndnf cantitatea 990 !
+S-a vandut din planta cioco1 cantitatea 3 !

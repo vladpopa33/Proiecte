@@ -1,0 +1,32 @@
+2900708365215 11/08/2009 sprained_ankle 2 Algocalmin Ben-Gay 
+2900708365215 12/03/2010 broken_leg 2 Ibuprofen Augmentin 
+1700802651230 11/05/2009 appendicitis 1 Primaxin 
+1700802651230 05/06/2009 pharyngitis 2 Faringosept Panadol 
+1700802651230 07/08/2010 hepatitis 1 Interferon 
+1700802651230 09/09/2010 pneumonia 3 Tusin Stodal Ventolin 
+2840619563258 02/10/2009 pharyngitis 3 Panadol Stodal Faringosept 
+2840619563258 08/02/2010 cancer 0  
+1801205659321 08/09/2010 pneumonia 2 Stodal Ventolin 
+1801205659321 10/10/2010 asthma 2 Ventolin Ketotifen 
+1801205659321 11/11/2010 broken_leg 2 Algocalmin Ibuprofen 
+1781021548621 11/11/2009 hepatitis 2 Entecavin Interferon 
+1781021548621 12/03/2010 appendicitis 1 Primaxin 
+2720908156213 01/01/2010 stroke 1 Streptase 
+2720908156213 03/07/1999 pneumonia 4 Ventorin ABC Ibuprofen Tusin 
+1010390123487 10/10/2010 pharyngitis 2 Panadol Stodal 
+1920419563218 02/03/2009 arhythmia 1 Miofilin 
+1920419563218 04/04/2009 pharyngitis 2 Paracetamol Faringosept 
+1920419563218 05/07/2009 asthma 1 Olynth 
+1920419563218 10/10/2010 sprained_ankle 1 Saridon 
+1800201123456 04/03/2009 pharyngitis 4 Panadol Decasept Stodal Strepsils 
+1800201123456 07/06/2009 sprained_ankle 1 Ben-Gay 
+1800201123456 05/08/2009 pharyngitis 4 Strepsils Tusin Faringosept Olynth 
+1800201123456 01/01/2010 stroke 2 Vitamin-K Kinlytic 
+1800201123456 05/07/2010 pharyngitis 1 Faringosept 
+2870730556621 11/11/2008 asthma 2 Ventolin Ketotifen 
+2870730556621 02/03/2009 broken_arm 1 Algocalmin 
+2870730556621 04/08/2009 pharyngitis 2 Farinogsept Decasept 
+2870730556621 10/10/2009 pneumonia 1 Stodal 
+1750305568742 07/01/2009 arhythmia 2 Vitamin-B1 Miofilin 
+1750305568742 08/10/2009 broken_leg 1 Ibuprofen 
+1750305568742 12/11/2012 pharyngitis 4 Panadol Olynth Paracetamol Strepsils 
