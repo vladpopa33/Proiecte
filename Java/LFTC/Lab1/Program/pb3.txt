@@ -1,0 +1,13 @@
+DECLARATION
+INT 31sir [ 8 ] ;
+INT n ;
+INT su%ma ;
+INT i ;
+END_DECLARATION
+START_CODE
+READ ( n ) ;
+suma = 0 ;
+FOR i = 1 ; i < n ; i = i + 1 DO
+suma = suma + sir [ i ] ;
+WRITE ( suma ) ;
+END_CODE

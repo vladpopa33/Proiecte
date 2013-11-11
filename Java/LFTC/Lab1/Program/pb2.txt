@@ -1,0 +1,16 @@
+DECLARATION
+INT a;
+INT b;
+END_DECLARATION
+START_CODE
+READ (a) ;
+READ (b) ;
+WHILE a != b DO
+IF a > b 
+a = a - b ;
+ELSE
+b = b - a ;
+END_IF
+END_WHILE
+WRITE ( a ) ;
+END_CODE

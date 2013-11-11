@@ -1,0 +1,14 @@
+DECLARATION
+DOUBLE ra$za ; 
+DOUBLE pi ; 
+DOUBLE 6arai ; 
+DOUBLE aria ; 
+END_DECLARATION
+START_CODE
+pi = 3.14 ; 
+READ ( raza ) ; 
+arai = 2 * pi * raza ; 
+aria = pi * raza * raza ; 
+WRITE ( arai ) ; 
+WRITE ( aria ) ;
+END_CODE
