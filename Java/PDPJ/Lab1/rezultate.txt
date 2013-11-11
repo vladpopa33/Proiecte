@@ -1,0 +1,3 @@
+Ip-uri distincte: 2
+Mac-uri distincte: 2
+Timp maxim: 1382514989

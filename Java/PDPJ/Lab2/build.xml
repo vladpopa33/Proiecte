@@ -1,0 +1,43 @@
+<project name="ExternalProcess" basedir="." default="run">
+
+    <property environment="sysenv"/>
+    <property file="build.properties"/>
+
+    <path id="the.classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <property name="lib.dir" value="lib"/>
+    <property name="build.dir" value="bin"/>
+    <property name="classes.dir" value="bin/classes"/>
+    <property name="src.dir" value="src"/>
+
+    <target name="clean" description="Cleans up build and deployment dirs">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" description="Compiles all core java source to class files" depends="clean">
+    	<echo message="Compiling from ${src.dir} to ${classes.dir}"> </echo>
+    	
+        <mkdir dir="${classes.dir}"/>
+
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               classpathref="the.classpath"
+               debug="${javac.debug}"
+               includeantruntime="${includeantruntime}"
+        	   source="${javac.source}" 
+        	   target="${javac.target}"	
+        	   compiler="${javac.compiler}" 
+        	   deprecation="${javac.deprecation}" >
+        </javac>
+    </target>
+
+    <target name="run" depends="compile" description="Starts the program">
+    	<copy file="log4j.properties" todir="${classes.dir}"/>
+    	<!--<java classname="${class.name}" classpathref="the.classpath" classpath="${classes.dir}">
+    	</java> -->
+    </target>
+</project> 
