@@ -20,20 +20,78 @@
 	</style>
 	<script>
 	var poz=34;
+	var nr_mutari=0;
+	var max_mutari=200;
+	var poz_aux;
+	var t;
+	function amesteca(id){
+		poz=id;
+		nr_mutari=0;
+		t=setTimeout("muta(poz)",2000);
+	}
+	function muta(id){
+		var pozi=id;
+		var mutare=Math.floor((Math.random()*4)+1);
+		if(mutare==1)
+			pozi=pozi-1;
+		if(mutare==2)
+			pozi=pozi+1;
+		if(mutare==3)
+			pozi=pozi-10;
+		if(mutare==4)
+			pozi=pozi+10;
+		if(document.getElementById(pozi)!=null){
+			document.getElementById(id).innerHTML=document.getElementById(pozi).innerHTML;
+			document.getElementById(id).style.backgroundColor="white";
+			document.getElementById(pozi).innerHTML="";
+			document.getElementById(pozi).style.backgroundColor="red";
+			nr_mutari++;
+			}
+		else
+			pozi=id;
+		poz_aux=pozi;
+		if(nr_mutari<max_mutari){
+			t=setTimeout("muta(poz_aux)",20);
+		}
+		else
+			clearTimeout(t);
+	}
+	function verifica(){
+		gata=1;
+		/*if(poz=34){
+			for (var i = 1; i < 34; i++) {
+				if(document.getElementById(i)!=null)
+					if(document.getElementById(i).innerHTML!=i)
+						gata=0;
+			}
+			if(document.getElementById(34).style.backgroundColor!='red')
+						gata=0;
+		}
+		if(poz=234){
+			if(document.getElementById()
+					if(document.getElementById(i).innerHTML!=i)
+						gata=0;
+			}
+			if(document.getElementById(34).style.backgroundColor!='red')
+						gata=0;
+		}*/
+	}
 	function functie(id){
-		if(id-10==poz||id+10==poz||id+1==poz||id-1==poz){
-			document.getElementById(poz).innerHTML=document.getElementById(id).innerHTML;
-			document.getElementById(poz).style.backgroundColor="white";
+		if(id-10==poz_aux||id+10==poz_aux||id+1==poz_aux||id-1==poz_aux){
+			document.getElementById(poz_aux).innerHTML=document.getElementById(id).innerHTML;
+			document.getElementById(poz_aux).style.backgroundColor="white";
 			document.getElementById(id).innerHTML="";
 			document.getElementById(id).style.backgroundColor="red";
-			poz=id;
+			poz_aux=id;
 		}
+		//verifica();
 	}
 	</script>
 </head>
 <body>
 	<div id="puzzle1">
 		<h2>Puzzle 1:</h2>
+		<form><input type="button" value="Sorteaza" onclick="amesteca(34)"></form>
 		<table style="border: solid">
 			<tr>
 				<td id="1" onclick="functie(1)">01</td>
@@ -61,8 +119,10 @@
 			</tr>
 		</table>
 	</div>
+
 	<div id="puzzle2">
 		<h2>Puzzle 2:</h2>
+		<form><input type="button" value="Sorteaza" onclick="amesteca(234)"><br></form>
 		<table style="border: solid">
 			<tr>
 				<td id="201" onclick="functie(201)"><img src="output_00.jpg"></td>
