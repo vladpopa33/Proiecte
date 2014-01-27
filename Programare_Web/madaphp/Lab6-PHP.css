@@ -1,0 +1,105 @@
+body{
+	background-color: rgb(205,92,92);
+}
+
+img{
+	width: 300px;
+	height: 300px;
+}
+
+img.v{
+	width: 10px;
+	height: 10px;
+
+}
+
+#divulmeu{
+	position: absolute;
+	margin-top: 300px;
+}
+
+#formulmeu{
+
+}
+ 
+#butondrt{
+		top:0;
+		padding-top:300px;
+		position: absolute;
+		right:0;
+	}
+
+#butonstg{
+		top:0;
+		padding-top:300px;
+		position: absolute;
+		left:0;
+	}
+
+#poza,#comment{
+		margin-left: 100px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+#voting{
+	overflow: hidden;
+}
+
+#listadestele li{
+	float: right;
+	right: 0;
+	top: 0;
+}
+
+.lista li {
+	display: none;
+}
+
+.lista{
+	list-style-type: none;
+}
+
+
+
+
+
+
+
+/*.prev #button{
+	border-radius: 30px;
+	border: 0px;
+	-moz-border-radius: 10px;
+	background-color: #0E49E4;
+	background-repeat: repeat-x;
+	box-shadow: 5px 5px 5px #333;
+	background: -webkit-gradient(linear, 0% 0% 0% 100%, from(#b2b200), to(#333300));	
+	background: -webkit-linear-gradient(top,#b2b200,#333300);
+	width: 200px;
+	text-align: center;
+	margin-left: 100px;
+	margin-top: 800px;
+	
+}
+
+.prev #button b:link{
+	color: rgb(240,230,140);
+	text-decoration: none;
+}
+
+.prev #button b:visited{
+	color: rgb(240,230,140);
+	text-decoration: none;
+}
+
+.prev #button b:hover{
+	color: rgb(240,230,140);
+	text-decoration: underline;
+}
+
+.prev #button b:link{
+	color: rgb(240,230,140);
+	text-decoration: none;
+}*/

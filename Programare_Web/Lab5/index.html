@@ -1,0 +1,171 @@
+<html>
+<head>
+	<title>Programare Web - Laborator 5 : JQuerry </title>
+	<style type="text/css">
+	td{
+		border:1px solid;
+		/*pt poza: 
+		convert poza.jpg -resize 320x320 poza0.jpg
+		convert poza0.jpg -crop 80x80  +repage  +adjoin  output_%02d.jpg
+		*/
+	}
+	div#puzzle1{
+		height: 200px;
+		width: 400px;
+	}
+	div#puzzle2{
+		margin-top: -220px;
+		margin-left: 400px;
+	}
+	</style>
+	<script src="jquery.min.js">
+	</script>
+	<script>
+	var poz=34;
+	var nr_mutari=0;
+	var max_mutari=200;
+	var poz_aux;
+	var t;
+	var nr_amestecari1=0;
+	var nr_amestecari2=0;
+	function amesteca(id){
+		if(id==34&&nr_amestecari1==0){
+			poz=id;
+			nr_amestecari1++;
+			nr_amestecari2=0;
+		}
+		else
+			if(id==234&&nr_amestecari2==0){
+				poz=id;
+				nr_amestecari2++;
+				nr_amestecari1=0;
+			}
+			else
+				poz=poz_aux;
+		nr_mutari=0;
+		t=setTimeout("muta(poz)",2000);
+	}
+	function muta(id){
+		var pozi=id;
+		var mutare=Math.floor((Math.random()*4)+1);
+		if(mutare==1)
+			pozi=pozi-1;
+		if(mutare==2)
+			pozi=pozi+1;
+		if(mutare==3)
+			pozi=pozi-10;
+		if(mutare==4)
+			pozi=pozi+10;
+		if(document.getElementById(pozi)!=null){
+			$('#'+id).html($('#'+pozi).html());
+			$('#'+pozi).empty();
+			nr_mutari++;
+			}
+		else
+			pozi=id;
+		poz_aux=pozi;
+		if(nr_mutari<max_mutari){
+			t=setTimeout("muta(poz_aux)",20);
+		}
+		else
+			clearTimeout(t);
+	}
+	function verifica(){
+		gata=1;
+		/*if(poz=34){
+			for (var i = 1; i < 34; i++) {
+				if(document.getElementById(i)!=null)
+					if(document.getElementById(i).innerHTML!=i)
+						gata=0;
+			}
+			if(document.getElementById(34).style.backgroundColor!='red')
+						gata=0;
+		}
+		if(poz=234){
+			if(document.getElementById()
+					if(document.getElementById(i).innerHTML!=i)
+						gata=0;
+			}
+			if(document.getElementById(34).style.backgroundColor!='red')
+						gata=0;
+		}*/
+	}
+	function functie(id){
+		if(id-10==poz_aux||id+10==poz_aux||id+1==poz_aux||id-1==poz_aux){
+			$('#'+poz_aux).html($('#'+id).html());
+			$('#'+id).empty();
+			poz_aux=id;
+		}
+		/*alert($('#'+id).css("background-color"));*/
+		/*fac clasa gol, plin si caut dupa clasa*/
+		/*if($('#'+id).parent().prev().children('#'+(id-10)).css("background-color")=="rgb(255, 0, 0)")
+			alert("Ana are mere sus!");
+		if($('#'+id).parent().next().children('#'+(id+10)).css('background-color')=="rgb(255, 0, 0)")
+			alert("Ana are mere jos!");*/
+		//verifica();
+	}
+	</script>
+</head>
+<body>
+	<div id="puzzle1">
+		<h2>Puzzle 1:</h2>
+		<form><input type="button" value="Sorteaza" onclick="amesteca(34)"></form>
+		<table style="border: solid">
+			<tr>
+				<td id="1" onclick="functie(1)">01</td>
+				<td id="2" onclick="functie(2)">02</td>
+				<td id="3" onclick="functie(3)">03</td>
+				<td id="4" onclick="functie(4)">04</td>
+			</tr>
+			<tr>
+				<td id="11" onclick="functie(11)">05</td>
+				<td id="12" onclick="functie(12)">06</td>
+				<td id="13" onclick="functie(13)">07</td>
+				<td id="14" onclick="functie(14)">08</td>
+			</tr>
+			<tr>
+				<td id="21" onclick="functie(21)">09</td>
+				<td id="22" onclick="functie(22)">10</td>
+				<td id="23" onclick="functie(23)">11</td>
+				<td id="24" onclick="functie(24)">12</td>
+			</tr>
+			<tr>
+				<td id="31" onclick="functie(31)">13</td>
+				<td id="32" onclick="functie(32)">14</td>
+				<td id="33" onclick="functie(33)">15</td>
+				<td id="34" onclick="functie(34)" style="/*background-color:red*/"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="puzzle2">
+		<h2>Puzzle 2:</h2>
+		<form><input type="button" value="Sorteaza" onclick="amesteca(234)"><br></form>
+		<table style="border: solid">
+			<tr>
+				<td id="201" onclick="functie(201)"><img src="output_00.jpg"></td>
+				<td id="202" onclick="functie(202)"><img src="output_01.jpg"></td>
+				<td id="203" onclick="functie(203)"><img src="output_02.jpg"></td>
+				<td id="204" onclick="functie(204)"><img src="output_03.jpg"></td>
+			</tr>
+			<tr>
+				<td id="211" onclick="functie(211)"><img src="output_04.jpg"></td>
+				<td id="212" onclick="functie(212)"><img src="output_05.jpg"></td>
+				<td id="213" onclick="functie(213)"><img src="output_06.jpg"></td>
+				<td id="214" onclick="functie(214)"><img src="output_07.jpg"></td>
+			</tr>
+			<tr>
+				<td id="221" onclick="functie(221)"><img src="output_08.jpg"></td>
+				<td id="222" onclick="functie(222)"><img src="output_09.jpg"></td>
+				<td id="223" onclick="functie(223)"><img src="output_10.jpg"></td>
+				<td id="224" onclick="functie(224)"><img src="output_11.jpg"></td>
+			</tr>
+			<tr>
+				<td id="231" onclick="functie(231)"><img src="output_12.jpg"></td>
+				<td id="232" onclick="functie(232)"><img src="output_13.jpg"></td>
+				<td id="233" onclick="functie(233)"><img src="output_14.jpg"></td>
+				<td id="234" onclick="functie(234)" style="/*background-color:red*/"></td>
+			</tr>
+		</table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<script>
+var request;
+var url = 'command.php';
+var v;
+var sosire;
+function doRequest() {
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open("GET", url + '?' + "do" + '=' + "2"+"&"+"sosire"+"="+sosire, true);
+	      request.send('');
+		
+	}
+	function getXmlHttpRequest() { // Furnizeaza obiectul XMLHttpRequest
+	  try {
+	    request = new XMLHttpRequest();
+	  } catch (e) {
+	    alert('Browserul nu poate lucra cu AJAX: ' + e);
+	    request = false;
+	  }
+	  return request;
+	}
+
+	function waitResponse() {
+	  if (request.readyState == 4) { // cerere rezolvata
+	    if (request.status == 200) // raspuns Ok
+	      showResponse();
+	    else
+	      alert('Eroare request.status: ' + request.status);
+	  }
+	}
+
+	function showResponse() {
+	  //console.log(request.responseText);
+	  //var names=request.responseText.split("+");
+	  document.getElementById("continut").innerHTML=request.responseText;
+	}
+	function ajaxCall(){
+					sosire=document.getElementById("sosire").value;
+			doRequest();
+		}
+	function functie(){
+		v = setInterval(function(){ajaxCall()},3000);
+	}
+</script>
+</head>
+<body onload="functie()">
+	Oras sosire:<input id="sosire" type="text"><br>
+	<div id="continut"></div>
+</body>
+</html>

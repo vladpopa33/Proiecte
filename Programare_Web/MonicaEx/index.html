@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Bine ati venit!</title>
+	<script>
+		function functie(){
+			document.getElementById("guest").innerHTML="<h4>Optiuni guest:</h4><a href='sosiri.php'> Lista sosiri </a><br><a href='plecari.php'> Lista plecari </a>";
+		}
+	</script>
+</head>
+<body>
+	<h1>Va rugam sa va autentificati!</h1>
+	<form action="login.php" method="post">
+		Username:<input type="text" name="user"><br>
+		Password:<input type="password" name="pass"><br>
+		<input type="submit" value="Log In">
+		<br>
+		<input type="button" onclick="functie()" value="Guest">
+	</form>
+	<div id="guest"></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<script>
+var request;
+var url = 'command.php';
+var v;
+var plecare;
+function doRequest() {
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open("GET", url + '?' + "do" + '=' + "1"+"&"+"plecare"+"="+plecare, true);
+	      request.send('');
+		
+	}
+	function getXmlHttpRequest() { // Furnizeaza obiectul XMLHttpRequest
+	  try {
+	    request = new XMLHttpRequest();
+	  } catch (e) {
+	    alert('Browserul nu poate lucra cu AJAX: ' + e);
+	    request = false;
+	  }
+	  return request;
+	}
+
+	function waitResponse() {
+	  if (request.readyState == 4) { // cerere rezolvata
+	    if (request.status == 200) // raspuns Ok
+	      showResponse();
+	    else
+	      alert('Eroare request.status: ' + request.status);
+	  }
+	}
+
+	function showResponse() {
+	  //console.log(request.responseText);
+	  //var names=request.responseText.split("+");
+	  document.getElementById("continut").innerHTML=request.responseText;
+	}
+	function ajaxCall(){
+			plecare=document.getElementById("plecare").value;
+			doRequest();
+		}
+	function functie(){
+		v = setInterval(function(){ajaxCall()},3000);
+	}
+</script>
+</head>
+<body onload="functie()">
+		Oras plecare:<input id="plecare" type="text"><br>
+	<div id="continut"></div>
+</body>
+</html>

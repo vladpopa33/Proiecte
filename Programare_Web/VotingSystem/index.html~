@@ -1,0 +1,48 @@
+<html>
+<head>
+<style>
+ul{
+	list-style-type:none;
+}
+li{
+	float:left;
+}
+#rez{
+	overflow:hidden;
+}
+</style>
+<script>
+function functie(id){
+	for(var i=1;i<=id;i++){
+		document.getElementById(i).firstChild.setAttribute('src','star2.png')
+	}
+}
+
+function functie1(id){
+	for(var i=1;i<=id;i++){
+		document.getElementById(i).firstChild.setAttribute('src','star1.png')
+	}
+}
+function vot(id){
+	document.getElementById("rez").innerHTML='Felicitari! Ati votat '+id+' stele!';
+}
+</script>
+</head>
+<body>
+<div id="vot">
+	<ul>
+		<li id=1 onclick="vot(1)"><img src="star1.png" onmouseover="functie(1)" onmouseout="functie1(1)"/></li>
+		<li id=2 onclick="vot(2)"><img src="star1.png" onmouseover="functie(2)" onmouseout="functie1(2)"/></li>
+		<li id=3 onclick="vot(3)"><img src="star1.png" onmouseover="functie(3)" onmouseout="functie1(3)"/></li>
+		<li id=4 onclick="vot(4)"><img src="star1.png" onmouseover="functie(4)" onmouseout="functie1(4)"/></li>
+		<li id=5 onclick="vot(5)"><img src="star1.png" onmouseover="functie(5)" onmouseout="functie1(5)"/></li>
+	</ul>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="rez"></div>
+</body>
+</html>

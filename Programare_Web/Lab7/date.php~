@@ -1,0 +1,29 @@
+<?php 
+$tabela=array("<td>Astra Giurgiu</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Steaua Bucuresti</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td>",
+	"<td>Petrolul Ploiesti</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Pandurii Tg Jiu</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Ceahlaul Piatra Neamt</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Dinamo Bucuresti</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>FC Vaslui</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Gaz Metan Medias</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>CFR Cluj</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>ACS Poli Timisoara</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>FC Botosani</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Corcondia Chiajna</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Sageata Navodari</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>FC Brasov</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Otelul Galati</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>U Cluj</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Viitorul Voluntari</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>",
+	"<td>Corona Brasov</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>");
+error_log($_GET['linie']);
+if(isset($_GET['do']))
+	if($_GET['do']==1)
+		/*if(isset($_GET['linie']))*/
+			echo $_GET['linie']."+".$tabela[$_GET['linie']-1];
+	else
+		if($_GET['do']==2)
+else
+	echo "Nu merge";
+?>

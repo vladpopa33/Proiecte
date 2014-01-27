@@ -1,0 +1,241 @@
+<html>
+<head>
+	<title>Programare Web - Laboratorul 6 - Ajax si PHP</title>
+	<style>
+		p{
+			font-size: 10px;
+		}
+		#rezultate{
+			position: absolute;
+			top: 0;
+			margin-top: 30px;
+			margin-left: 800px;
+		}
+		table,td,tr,th{
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+	</style>
+	<script>
+		var request;
+		var url = 'date.php';
+		var v;
+		var linie=1;
+		var echipa1;
+		var echipa2;
+		/*function doRequestLine(i){
+		  ind=1;
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open('GET', url + '?' + "do" + '=' + "1"+'&'+"linie" + '=' + i, true);
+	      request.send('');
+	      return;
+
+		}*/
+	function doRequest() {
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open("GET", url + '?' + "do" + '=' + "1", true);
+	      request.send('');
+		
+	}
+	function doRequest1() {
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  var elem=document.getElementsByTagName("td");
+		  var data="";
+		  for(var i=0;i<elem.length;i++){
+		  	if(i%8==0)
+		  		data=data+"`"+elem[i].innerHTML;
+		  	else
+		  		data=data+"^"+elem[i].innerHTML;
+		  }
+		  request.open("GET", url + '?' + "do" + '=' + "2"+"&"+"continut"+"="+data, true);
+	      request.send('');
+		
+	}
+	function getXmlHttpRequest() { // Furnizeaza obiectul XMLHttpRequest
+	  try {
+	    request = new XMLHttpRequest();
+	  } catch (e) {
+	    alert('Browserul nu poate lucra cu AJAX: ' + e);
+	    request = false;
+	  }
+	  return request;
+	}
+
+	function waitResponse() {
+	  if (request.readyState == 4) { // cerere rezolvata
+	    if (request.status == 200) // raspuns Ok
+	      showResponse();
+	    else
+	      alert('Eroare request.status: ' + request.status);
+	  }
+	}
+
+	function showResponse() {
+	  //console.log(request.responseText);
+	  //var names=request.responseText.split("+");
+	  if(request.responseText=="merge"){
+	  	alert("Salvat!");
+	  	return;
+	  }
+	  /*if(names[0]==18){
+	  		//clearInterval(v);
+	  		sorteaza();
+	  	}*/
+	  //console.log(names);
+
+	  document.getElementById("tabela").innerHTML=request.responseText;
+	  sorteaza();
+	}
+
+	function sorteaza(){
+			elements = document.getElementsByTagName("td");
+    	   	for (var i = 0; i < elements.length; i++)
+    	   		for (var j = 0; j < elements.length; j++) 
+    	   				if(i%8==7&&j%8==7){
+    	   					//console.log(elements[i].innerHTML+","+elements[j].innerHTML);
+    	   					if(parseInt(elements[i].innerHTML)>parseInt(elements[j].innerHTML)||(parseInt(elements[i].innerHTML)==parseInt(elements[j].innerHTML)&&parseInt(elements[i-2].innerHTML)>parseInt(elements[j-2].innerHTML))){
+    	   						var aux1=elements[i].parentNode.id;
+    	   						var aux2=elements[j].parentNode.id;
+    	   						console.log(aux1+","+aux2);
+    	   						var aux=document.getElementById(aux1).innerHTML;
+    	   						document.getElementById(aux1).innerHTML=document.getElementById(aux2).innerHTML;
+    	   						document.getElementById(aux2).innerHTML=aux;	
+    	   						}
+    	   					}
+	
+    }
+    function addechipa1(v){
+    	echipa1=v;
+    }
+    function addechipa2(v){
+    	echipa2=v;
+    }	
+    function addscore(ind,v){
+    		//var s=document.getElementById(ind+"scor").getAttribute('value');
+    		var sc=v.split("-");
+    		//console.log(ind+"   "+v);
+    		if(sc.length==2)
+    			if(sc[0]!=""&&sc[1]!=""){
+    				console.log(echipa1+" - "+echipa2+" "+v);	
+    				var ok1=0;
+    				var ok2=0;
+    				var e1;
+    				var e2;
+    				for(var i=1;i<19;i++){
+    					if(document.getElementById(i).firstChild.innerHTML==echipa1){
+    						e1=document.getElementById(i).firstChild;
+    						ok1=1;
+    					}
+    					if(document.getElementById(i).firstChild.innerHTML==echipa2){
+    						e2=document.getElementById(i).firstChild;
+    						ok2=1;
+    					}
+    				}
+    				if(ok1==0)
+    					alert("Numele primei echipe e gresit!");
+    				if(ok2==0)
+    					alert("Numele echipei nr.2 e gresit!");
+    				if(ok1==1&&ok2==1){
+    					var jucate=e1.nextSibling;
+    					jucate.innerHTML=parseInt(jucate.innerHTML)+1;
+    					var castigate=jucate.nextSibling;
+    					var egale=castigate.nextSibling;
+    					var pierdute=egale.nextSibling;
+    					var marcate=pierdute.nextSibling;
+    					var primite=marcate.nextSibling;
+    					var punctaj=primite.nextSibling;
+    					if(sc[0]>sc[1]){
+    						castigate.innerHTML=parseInt(castigate.innerHTML)+1;
+     						punctaj.innerHTML=parseInt(punctaj.innerHTML)+3;
+    					}
+    					else{
+    						if(sc[0]==sc[1]){
+	    						egale.innerHTML=parseInt(egale.innerHTML)+1;
+	    						punctaj.innerHTML=parseInt(punctaj.innerHTML)+1;
+    						}
+    						else{
+    							pierdute.innerHTML=parseInt(pierdute.innerHTML)+1;
+    						}
+    					}
+    					marcate.innerHTML=parseInt(marcate.innerHTML)+parseInt(sc[0]);
+	    				primite.innerHTML=parseInt(primite.innerHTML)-parseInt(sc[1]);
+    					var jucate=e2.nextSibling;
+    					jucate.innerHTML=parseInt(jucate.innerHTML)+1;
+    					var castigate=jucate.nextSibling;
+    					var egale=castigate.nextSibling;
+    					var pierdute=egale.nextSibling;
+    					var marcate=pierdute.nextSibling;
+    					var primite=marcate.nextSibling;
+    					var punctaj=primite.nextSibling;
+    					if(sc[1]>sc[0]){
+    						castigate.innerHTML=parseInt(castigate.innerHTML)+1;
+     						punctaj.innerHTML=parseInt(punctaj.innerHTML)+3;
+    					}
+    					else{
+    						if(sc[0]==sc[1]){
+	    						egale.innerHTML=parseInt(egale.innerHTML)+1;
+	    						punctaj.innerHTML=parseInt(punctaj.innerHTML)+1;
+    						}
+    						else{
+    							pierdute.innerHTML=parseInt(pierdute.innerHTML)+1;
+    						}
+    					}
+    					marcate.innerHTML=parseInt(marcate.innerHTML)+parseInt(sc[1]);
+	    				primite.innerHTML=parseInt(primite.innerHTML)-parseInt(sc[0]);
+	    				sorteaza();
+	    				document.getElementById("s"+ind).removeAttribute('onblur');
+    				}
+    			}
+
+    	 	//console.log(ind);
+    	 }  	   	
+    function salveaza(){
+    	doRequest1();
+    }
+	function add(){
+			document.getElementById("butoane").innerHTML="<input type='button' value='Salveaza' onclick='salveaza()'><br>";
+			for(var i=0;i<9;i++){
+				document.getElementById("rezultate").innerHTML=document.getElementById("rezultate").innerHTML+"Meciul nr."+(i+1)+"<p>Echipa 1:<input type='text' size='30' onblur='addechipa1(this.value)'><br>Echipa2: <input type='text' size='30' onblur='addechipa2(this.value)'><br>Scor: &nbsp; &nbsp; &nbsp; <input type='text' size='5' id='s"+i+"' onblur='addscore("+i+",this.value)'></p>";
+			}
+		}
+	function ajaxCall(){
+			doRequest(linie++);
+		}
+	function generaretabel(){
+			document.getElementById("tabel").innerHTML="<table id='tabela'><tr id='"+0+"'><th>Echipa</th><th>Meciuri jucate</th><th>Castigate</th><th>Egale</th><th>Pierderi</th><th>Goluri marcate</th><th>Goluri primite</th><th>Punctaj</th></tr></table>";
+			for(var i=1;i<19;i++){
+				document.getElementById("tabela").innerHTML=document.getElementById("tabela").innerHTML+"<tr id='"+i+"'><td>0</td>"+"</tr>";
+				}
+			//v = setInterval(function(){ajaxCall()},100);//linie cu linie
+			doRequest();
+				/*response='';
+				$.ajax({
+		            type: 'GET',
+		            url: 'date.php',
+		            data: {do:1, linie:i},
+		            success: function(raspuns){
+		                response=raspuns;
+		            }
+		            });
+		        document.getElementById(i).innerHTML=response;*/
+				//}
+			
+		}
+	</script>
+</head>
+<body onload="generaretabel()">
+	<h2>Clasament</h2>
+	<div id="tabel"></div>
+	<br>
+	<form>
+	<div id="butoane">
+	<input type="button" value="Adauga rezultat" onclick="add()"><br>
+	</div>
+	<div id="rezultate">
+	</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<html>
+<head>
+	<title>Produse</title>
+	<style>
+		.produs{
+			width:50px;
+			height:30px;
+		}
+		.info{
+			margin-top: -20px;
+			border: 1px solid black;
+			padding: 5px;	
+			display: none;
+			width:300px;
+			float: right;
+		}
+		.cokie{
+			float: left;
+			border: 1px solid black;
+			padding: 10px;	
+			background-color: rgb(230,230,230);
+		}
+		body{
+			background-color: rgb(200,200,200);
+			}
+		img{
+			width:50px;
+			height: 50px;
+		}
+	</style>
+	<script>
+		var request;
+		var url = 'command.php';
+		function getInfo(id){
+			if(getCookie(id)=="")
+				setCookie(id,0,1);
+			setCookie(id,parseInt(getCookie(id))+1,1);
+			if(getCookie("info"+id)!="")
+				addLastCookie("Nume:"+document.getElementById(id).innerHTML+"<br>"+getCookie("info"+id));
+			if(document.getElementById("info"+id).innerHTML=="gol")
+				doRequest1(id);
+			else{
+				document.getElementById("info"+id).style.display='block';
+				setCookie("info"+id,document.getElementById("info"+id).innerHTML);
+			}
+		}
+		function hide(id){
+			var id="info"+id;
+			document.getElementById(id).style.display = 'none';
+		}
+		function doRequest() {
+			
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open("GET", url + '?' + "do" + '=' + "1", true);
+	      request.send('');
+		
+		}
+		function doRequest1(id) {
+		  request = getXmlHttpRequest();
+		  request.onreadystatechange = waitResponse;
+		  request.open("GET", url + '?' + "do" + '=' + "2"+"&"+"id"+"="+id, true);
+	      request.send('');
+		
+		}
+		function addLastCookie(v){
+			if(v==getCookie("prima"))
+				return;
+			if(v!=getCookie("doua")){
+				setCookie("treia",getCookie("doua"),1);
+			}
+			setCookie("doua",getCookie("prima"),1);
+			setCookie("prima",v,1);
+
+		}
+		function getLastCokies(){
+			var data="";
+			if(getCookie("prima")!="")
+				data=data+"Ultimele produse: <br><div class='cokie'>"+getCookie("prima")+"</div>";
+			if(getCookie("doua")!="")
+				data=data+"<div class='cokie'>"+getCookie("doua")+"</div>";
+			if(getCookie("treia")!="")
+				data=data+"<div class='cokie'>"+getCookie("treia")+"</div>";
+			document.getElementById("ultimele").innerHTML=data;
+		}
+		function getFirstCokies(){
+			var nume=[];
+			var valoare=[];
+			var i;
+			var j;
+			for(i=0;i<10;i++)
+				if(getCookie(i)!=""){
+					nume.push(i);
+					valoare.push(getCookie(i))
+				}
+			var aux;
+			console.log(nume);
+			console.log(valoare);
+			for(i=0;i<nume.length-1;i++)
+				for(j=i+1;j<nume.length;j++)
+					if(valoare[i]<valoare[j]){
+						aux=valoare[i];
+						valoare[i]=valoare[j];
+						valoare[j]=aux;
+						aux=nume[i];
+						nume[i]=nume[j];
+						nume[j]=aux;
+					}
+			console.log(nume);
+			console.log(valoare);
+			if(nume.length>2)
+				document.getElementById("primele").innerHTML="<p>Cele mai vizualizate:</p><div class='cokie'>Nume:"+document.getElementById(nume[0]).innerHTML+"<br>"+getCookie("info"+nume[0])+"</div><div class='cokie'>Nume: "+document.getElementById(nume[1]).innerHTML+"<br>"+getCookie("info"+nume[1])+"</div><div class='cokie'>Nume: "+document.getElementById(nume[2]).innerHTML+"<br>"+getCookie("info"+nume[2])+"</div>";
+		}
+		function setCookie(cname,cvalue,exdays)
+		{
+			var d = new Date();
+			d.setTime(d.getTime()+(exdays*24*60*60*1000));
+			var expires = "expires="+d.toGMTString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
+		}
+		function getCookie(cname)
+		{
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) 
+			  {
+			  var c = ca[i].trim();
+			  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+			  }
+			return "";
+		}
+		function getXmlHttpRequest() { // Furnizeaza obiectul XMLHttpRequest
+		  try {
+		    request = new XMLHttpRequest();
+		  } catch (e) {
+		    alert('Browserul nu poate lucra cu AJAX: ' + e);
+		    request = false;
+		  }
+		  return request;
+		}
+
+		function waitResponse() {
+		  if (request.readyState == 4) { // cerere rezolvata
+		    if (request.status == 200) // raspuns Ok
+		      showResponse();
+		    else
+		      alert('Eroare request.status: ' + request.status);
+		  }
+		}
+
+		function showResponse() {
+		  //console.log(request.responseText);
+		  //var names=request.responseText.split("+");
+
+			var json=JSON.parse(request.responseText);
+		  	if(json[0]=='^get_names^'){
+				var data='<br>';
+			  	for(var i=1;i<json.length;i=i+2){
+			  		data=data+"<div id='"+json[i]+"' class='produs' onmouseover='getInfo(this.id)' onmouseout='hide(this.id)'>"+json[i+1]+"</div><div id='info"+json[i]+"' class='info'>gol</div><br>";
+			  		}
+			  	document.getElementById("continut").innerHTML=data;
+			  	getFirstCokies();
+				getLastCokies();
+				}
+			if(json[0]=='^get_details^'){
+				var id="info"+json[1];
+				document.getElementById(id).style.display = 'block';
+				document.getElementById(id).innerHTML="Descriere: "+json[2]+"<br>Pret: "+json[3]+"<br>Imagine: <img src='"+json[4]+"'>"
+			}
+
+
+		}
+	</script>
+</head>
+<body onload="doRequest()">
+	<div id="primele"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h3>Lista produse</h3>
+	<div id="continut">
+	</div>
+	<div id="ultimele"></div>
+</body>
+</html>

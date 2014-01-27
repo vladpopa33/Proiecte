@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>jQuery</title>
+<style>
+th,tr,td{
+border: 1px solid black;
+}
+</style>
+<script src="jquery.min.js"></script>
+<script>
+var nrRanduri=5;
+var sortari=[0,0,0];
+function sortare(i){
+	sortari[i]++;
+	for(var j=1;j<nrRanduri;j++)
+		for(var k=1;k<nrRanduri;k++)
+			if(sortari[i]%2==0){
+			if($("#"+j).children().eq(i).html()>$("#"+k).children().eq(i).html()){
+					var aux=$("#"+j).html();
+					$("#"+j).html($("#"+k).html());
+					$("#"+k).html(aux);	
+				}
+			}else{
+				if($("#"+j).children().eq(i).html()<$("#"+k).children().eq(i).html()){
+					var aux=$("#"+j).html();
+					$("#"+j).html($("#"+k).html());
+					$("#"+k).html(aux);
+				}
+			}
+						
+}
+</script>
+</head>
+<body>
+<table style="border: 1px solid black; border-collapse:collapse">
+<tr id=0><th onclick="sortare(0)">Titlu</th><th onclick="sortare(1)">Director</th><th onclick="sortare(2)">An</th></tr>
+<tr id=1><td>Avatar</td><td>James Cameron</td><td>2010</td></tr>
+<tr id=2><td>Ghost of Mars</td><td>John Carpenter</td><td>1945</td></tr>
+<tr id=3><td>To Rome with Love</td><td>Woody Allen</td><td>2007</td></tr>
+<tr id=4><td>Noe</td><td>D-zo</td><td>-300</td></tr>
+</table>
+</body>
+</html>
