@@ -1,0 +1,17 @@
+<masini>
+  <masina marca="ford"
+          culoare="neagra"
+          motor="1900"
+          viteza_maxima="200"
+          pret="14000"
+          imagine="cale_fisier_imagine1"
+  />
+  <masina marca="opel"
+          culoare="alba"
+          motor="1400"
+          viteza_maxima="160"
+          pret="10000"
+          imagine="cale_fisier_imagine2"
+  />
+  
+</masini>
